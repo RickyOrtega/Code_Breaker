@@ -6,7 +6,7 @@ import principal.graficos.SuperficieDibujo;
 import java.awt.*;
 
 public class GeneradorTooltip {
-    private static Point generarTooltip(final Point pi) {
+    public static Point generarTooltip(final Point pi) {
 
         final int x = pi.x;
         final int y = pi.y;
@@ -39,7 +39,7 @@ public class GeneradorTooltip {
         return pf;
     }
 
-    private static String getPosicionTooltip(final Point pi){
+    public static String getPosicionTooltip(final Point pi){
 
         final int x = pi.x;
         final int y = pi.y;

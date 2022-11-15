@@ -26,7 +26,7 @@ public class GestorMenu implements EstadoJuego {
                                                       etiquetaInventario.y + etiquetaInventario.height + em.getMARGEN_VERTICAL(),
                                                         em.getANCHO_ETIQUETAS(),
                                                         em.getALTO_ETIQUETAS());
-        seccionesMenu[1] = new MenuEquipo("Equipo", etiquetaEquipo);
+        seccionesMenu[1] = new MenuEquipo("Equipo", etiquetaEquipo, em);
         seccionActual = seccionesMenu[0];
 
         this.sd = sd;

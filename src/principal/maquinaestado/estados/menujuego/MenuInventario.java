@@ -10,25 +10,15 @@ import principal.inventario.Inventario;
 
 import java.awt.*;
 
+import static principal.entes.Jugador.limitePeso;
+import static principal.entes.Jugador.pesoActual;
+
 public class MenuInventario extends SeccionMenu {
 
-    private int limitePeso = 100;
-    private int pesoActual = 20;
-
-    private final int MARGEN_GENERAL = 8;
-    private final Rectangle barraPeso;
-    private final EstructuraMenu em;
     public static Inventario inventario;
 
     public MenuInventario(final String nombreSeccion, final Rectangle etiquetaMenu, EstructuraMenu em) {
-        super(nombreSeccion, etiquetaMenu);
-
-        int ancho = 100;
-        int alto = 8;
-
-        this.em = em;
-
-        barraPeso = new Rectangle(Constantes.ANCHO_JUEGO - ancho - MARGEN_GENERAL, em.getBANNER_SUPERIOR().height + MARGEN_GENERAL, ancho, alto);
+        super(nombreSeccion, etiquetaMenu, em);
 
         inventario = new Inventario();
     }
@@ -45,14 +35,6 @@ public class MenuInventario extends SeccionMenu {
         if(sd.getRaton().getRectanguloPosicion().intersects(EscaladorElementos.escalarRectanguloSuperior(barraPeso))) {
             GeneradorTooltip.dibujarTooltip(g, sd, pesoActual + "/" + limitePeso);
         }
-    }
-
-    private void dibujarLimitePeso(final Graphics g) {
-        final Rectangle contenidoBarra = new Rectangle(barraPeso.x + 1, barraPeso.y + 1, barraPeso.width / (limitePeso/pesoActual), barraPeso.height - 2);
-
-        DibujoDebug.dibujarString(g, "Peso ", barraPeso.x - 30, barraPeso.y + 7, Color.BLACK);
-        DibujoDebug.dibujarRectangulo(g, barraPeso, Color.GRAY,true);
-        DibujoDebug.dibujarRectangulo(g, contenidoBarra, Constantes.ROJO_GLOBAL,true);
     }
 
     private void dibujarRejillaInventario(final Graphics g, EstructuraMenu em) {

@@ -32,6 +32,8 @@ public class Jugador {
     private int recuperacion = 0;
     private final int RECUPERACION_MAXIMA = 100;
     private boolean recuperado = true;
+    public static int limitePeso = 100;
+    public static int pesoActual = 0;
 
     public Jugador(Mapa mapa) {
         posicionX = mapa.getPosicionInicial().getX();

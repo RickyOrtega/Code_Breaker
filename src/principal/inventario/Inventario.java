@@ -40,10 +40,6 @@ public class Inventario {
         for (ItemInventario itemInventario : objetos) {
             if (itemInventario.getId() == objeto.getId()) {
 
-                System.out.println("Cantidad actual: " + itemInventario.getCantidad());
-
-                System.out.println("Cantidad a incrementar: " + cantidad);
-
                 itemInventario.incrementarCantidad(cantidad);
                 incrementado = true;
                 break;
