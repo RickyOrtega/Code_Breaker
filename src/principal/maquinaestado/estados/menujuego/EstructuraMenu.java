@@ -1,7 +1,7 @@
 package principal.maquinaestado.estados.menujuego;
 
 import principal.Constantes;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DibujoDebug_R;
 
 import java.awt.*;
 
@@ -38,9 +38,9 @@ public class EstructuraMenu {
     }
 
     public void dibujar(final Graphics g){
-        DibujoDebug.dibujarRectangulo(g, BANNER_SUPERIOR, CBANNER_SUPERIOR, true);
-        DibujoDebug.dibujarRectangulo(g, BANNER_LATERAL, CBANNER_LATERAL, true);
-        DibujoDebug.dibujarRectangulo(g, FONDO, CFONDO, true);
+        DibujoDebug_R.dibujarRectangulo(g, BANNER_SUPERIOR, CBANNER_SUPERIOR, true);
+        DibujoDebug_R.dibujarRectangulo(g, BANNER_LATERAL, CBANNER_LATERAL, true);
+        DibujoDebug_R.dibujarRectangulo(g, FONDO, CFONDO, true);
     }
 
     public Color getCFONDO() {

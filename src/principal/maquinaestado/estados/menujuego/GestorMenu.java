@@ -1,6 +1,7 @@
 package principal.maquinaestado.estados.menujuego;
 
 import principal.graficos.SuperficieDibujo;
+import principal.inventario.Inventario;
 import principal.maquinaestado.EstadoJuego;
 
 import java.awt.*;
@@ -26,7 +27,8 @@ public class GestorMenu implements EstadoJuego {
                                                       etiquetaInventario.y + etiquetaInventario.height + em.getMARGEN_VERTICAL(),
                                                         em.getANCHO_ETIQUETAS(),
                                                         em.getALTO_ETIQUETAS());
-        seccionesMenu[1] = new MenuEquipo("Equipo", etiquetaEquipo, em);
+
+        seccionesMenu[1] = new MenuEquipo("Equipo", etiquetaEquipo, em, sd, seccionesMenu[0].getInventario());
         seccionActual = seccionesMenu[0];
 
         this.sd = sd;

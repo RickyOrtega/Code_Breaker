@@ -5,7 +5,7 @@ import principal.Constantes;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class DibujoDebug {
+public class DibujoDebug_R {
 
     public static int objetosDibujados = 0;
 

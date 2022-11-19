@@ -4,7 +4,7 @@ import principal.Constantes;
 import principal.control.GestorControles;
 import principal.entes.Jugador;
 import principal.herramientas.CargadorRecursos;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DibujoDebug_R;
 import principal.inventario.ContenedorObjetos;
 import principal.inventario.Inventario;
 import principal.sprites.Sprite;
@@ -249,7 +249,7 @@ public class Mapa {
                 int puntoX = x * Constantes.LADO_SPRITE - posicionX + MargenX;
                 int puntoY = y * Constantes.LADO_SPRITE - posicionY + MargenY;
 
-                DibujoDebug.dibujarImagen(g, spriteActual, puntoX, puntoY);
+                DibujoDebug_R.dibujarImagen(g, spriteActual, puntoX, puntoY);
             }
         }
 

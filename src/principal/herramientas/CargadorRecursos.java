@@ -54,6 +54,31 @@ public class CargadorRecursos {
         return imagenAcelerada;
     }
 
+    public static String leerArchivoJSON_R(String ruta) {
+
+        String contenido = "";
+
+        BufferedReader lector = new BufferedReader(new InputStreamReader(CargadorRecursos.class.getResourceAsStream(ruta)));
+
+        String linea;
+
+        try {
+            while ((linea = lector.readLine()) != null) {
+                contenido += linea;
+            }
+        } catch (IOException e) {
+            System.out.println("No se pudo cargar el archivo: " + ruta);
+        } finally {
+            try {
+                lector.close();
+            } catch (IOException e) {
+                System.out.println("No se pudo cerrar el archivo: " + ruta);
+            }
+        }
+
+        return contenido;
+    }
+
     public static String leerArchivoTexto_R(String ruta){
 
         String contenido = "";
@@ -75,8 +100,11 @@ public class CargadorRecursos {
                 System.out.println("No se pudo cerrar el archivo: " + ruta);
             }
         }
+
         return contenido;
     }
+
+
 
     public static Font cargarFuente(final String ruta){
 

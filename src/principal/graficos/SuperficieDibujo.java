@@ -4,8 +4,8 @@ import principal.Constantes;
 import principal.GestorPrincipal;
 import principal.control.GestorControles;
 import principal.control.Raton;
-import principal.herramientas.DatosDebug;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DatosDebug_R;
+import principal.herramientas.DibujoDebug_R;
 import principal.maquinaestado.GestorEstados;
 import principal.maquinaestado.estados.juego.GestorJuego;
 
@@ -38,7 +38,7 @@ public class SuperficieDibujo extends Canvas {
 
     public void dibujar(final GestorEstados ge) {
 
-        DibujoDebug.reiniciarContadorObjetosDibujados();
+        DibujoDebug_R.reiniciarContadorObjetosDibujados();
 
         BufferStrategy buffer = getBufferStrategy();
 
@@ -61,9 +61,9 @@ public class SuperficieDibujo extends Canvas {
         mostrarDebug_R();
 
         if (GestorControles.getTeclado().mostrandoMetricas){
-            DatosDebug.dibujarDatos(g);
+            DatosDebug_R.dibujarDatos_R(g);
         } else {
-            DatosDebug.limpiarDatos();
+            DatosDebug_R.limpiarDatos();
         }
 
         Toolkit.getDefaultToolkit().sync();
@@ -74,13 +74,13 @@ public class SuperficieDibujo extends Canvas {
     }
 
     private void mostrarDebug_R(){
-        DatosDebug.agregarDato("FPS: " + GestorPrincipal.getFps());
-        DatosDebug.agregarDato("APS: " + GestorPrincipal.getAps());
-        DatosDebug.agregarDato("OPF: " + DibujoDebug.getObjetosDibujados());
-        DatosDebug.agregarDato("FACTOR ESCALADO: " + Constantes.FACTOR_ESCALADO_X + ", " + Constantes.FACTOR_ESCALADO_Y);
-        DatosDebug.agregarDato("POSICION RATON: " + raton.getPosicion().x + ", " + raton.getPosicion().y);
-        DatosDebug.agregarDato("Posición: " + GestorJuego.getJugador().getPosicionX() + ", " + GestorJuego.getJugador().getPosicionY());
-        DatosDebug.agregarDato("Siguiente mapa: " +GestorJuego.getMapa().getSiguienteMapa());
+        DatosDebug_R.agregarDato("FPS: " + GestorPrincipal.getFps());
+        DatosDebug_R.agregarDato("APS: " + GestorPrincipal.getAps());
+        DatosDebug_R.agregarDato("OPF: " + DibujoDebug_R.getObjetosDibujados());
+        DatosDebug_R.agregarDato("FACTOR ESCALADO: " + Constantes.FACTOR_ESCALADO_X + ", " + Constantes.FACTOR_ESCALADO_Y);
+        DatosDebug_R.agregarDato("POSICION RATON: " + raton.getPosicion().x + ", " + raton.getPosicion().y);
+        DatosDebug_R.agregarDato("Posición: " + GestorJuego.getJugador().getPosicionX() + ", " + GestorJuego.getJugador().getPosicionY());
+        DatosDebug_R.agregarDato("Siguiente mapa: " +GestorJuego.getMapa().getSiguienteMapa());
     }
 
     public void actualizar() {

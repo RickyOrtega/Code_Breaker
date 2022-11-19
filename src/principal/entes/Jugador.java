@@ -2,7 +2,7 @@ package principal.entes;
 
 import principal.Constantes;
 import principal.control.GestorControles;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DibujoDebug_R;
 import principal.mapas.Mapa;
 import principal.sprites.SpriteSheet;
 
@@ -302,7 +302,7 @@ public class Jugador {
 
         final int puntoY = Constantes.ALTO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
 
-        DibujoDebug.dibujarImagen(g, imagenActual, puntoX, puntoY);
+        DibujoDebug_R.dibujarImagen(g, imagenActual, puntoX, puntoY);
     }
     public double getPosicionX() {
         return posicionX;

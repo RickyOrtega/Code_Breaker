@@ -1,18 +1,19 @@
 package principal.maquinaestado.estados.menujuego;
 
 import principal.Constantes;
-import principal.entes.Jugador;
 import principal.graficos.SuperficieDibujo;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DibujoDebug_R;
 import principal.herramientas.EscaladorElementos;
 import principal.herramientas.GeneradorTooltip;
 import principal.herramientas.MedidorString;
+import principal.inventario.Inventario;
 
 import java.awt.*;
 import java.util.Random;
 
 import static principal.entes.Jugador.limitePeso;
 import static principal.entes.Jugador.pesoActual;
+import static principal.maquinaestado.estados.menujuego.MenuInventario.inventario;
 
 public abstract class SeccionMenu {
     protected final String nombreSeccion;
@@ -70,8 +71,8 @@ public abstract class SeccionMenu {
                 break;
         }
 
-        DibujoDebug.dibujarRectangulo(g, tooltip, Color.BLACK,true);
-        DibujoDebug.dibujarString(g, texto, tooltip.x + margenFuente, tooltip.y + altoTooltip - margenFuente, Color.WHITE);
+        DibujoDebug_R.dibujarRectangulo(g, tooltip, Color.BLACK,true);
+        DibujoDebug_R.dibujarString(g, texto, tooltip.x + margenFuente, tooltip.y + altoTooltip - margenFuente, Color.WHITE);
     }
 
     protected void dibujarLimitePeso(final Graphics g) {
@@ -84,25 +85,25 @@ public abstract class SeccionMenu {
 
         final Rectangle contenidoBarra = new Rectangle(barraPeso.x + 1, barraPeso.y + 1,  ancho,barraPeso.height - 2);
 
-        DibujoDebug.dibujarString(g, "Peso ", barraPeso.x - 30, barraPeso.y + 7, Color.BLACK);
-        DibujoDebug.dibujarRectangulo(g, barraPeso, Color.GRAY,true);
-        DibujoDebug.dibujarRectangulo(g, contenidoBarra, Constantes.ROJO_GLOBAL,true);
+        DibujoDebug_R.dibujarString(g, "Peso ", barraPeso.x - 30, barraPeso.y + 7, Color.BLACK);
+        DibujoDebug_R.dibujarRectangulo(g, barraPeso, Color.GRAY,true);
+        DibujoDebug_R.dibujarRectangulo(g, contenidoBarra, Constantes.ROJO_GLOBAL,true);
     }
 
     public void dibujarEtiquetaInactiva(final Graphics g){
-        DibujoDebug.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
-        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
+        DibujoDebug_R.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
+        DibujoDebug_R.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
     }
 
     public void dibujarEtiquetaInactivaResaltada(final Graphics g){
-        DibujoDebug.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
-        DibujoDebug.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x + etiquetaMenu.width - 10, etiquetaMenu.y + 5, 5, etiquetaMenu.height - 10), new Color(100, 0, 0,255), true);
-        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
+        DibujoDebug_R.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
+        DibujoDebug_R.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x + etiquetaMenu.width - 10, etiquetaMenu.y + 5, 5, etiquetaMenu.height - 10), new Color(100, 0, 0,255), true);
+        DibujoDebug_R.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
     }
 
     public void dibujarEtiquetaActivaResaltada(final Graphics g){
         dibujarEtiquetaActiva_R(g);
-        DibujoDebug.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x + etiquetaMenu.width - 10, etiquetaMenu.y + 5, 5, etiquetaMenu.height - 10), new Color(100, 0, 0,255), true);
+        DibujoDebug_R.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x + etiquetaMenu.width - 10, etiquetaMenu.y + 5, 5, etiquetaMenu.height - 10), new Color(100, 0, 0,255), true);
     }
 
     public void dibujarEtiquetaActiva(final Graphics g){
@@ -112,10 +113,10 @@ public abstract class SeccionMenu {
 
         int red = valorRGB.nextInt(0,255);
 
-        DibujoDebug.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
-        DibujoDebug.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x,etiquetaMenu.y, 5, etiquetaMenu.height), new Color(red, 0, 0, 255), true);
+        DibujoDebug_R.dibujarRectangulo(g, etiquetaMenu, Color.WHITE, true);
+        DibujoDebug_R.dibujarRectangulo(g, new Rectangle(etiquetaMenu.x,etiquetaMenu.y, 5, etiquetaMenu.height), new Color(red, 0, 0, 255), true);
 
-        DibujoDebug.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
+        DibujoDebug_R.dibujarString(g, nombreSeccion, etiquetaMenu.x + 15, etiquetaMenu.y + 14, Color.BLACK);
     }
     public Rectangle getEtiquetaMenuReescalada() {
 
@@ -132,5 +133,9 @@ public abstract class SeccionMenu {
 
     public Rectangle getEtiquetaMenu() {
         return etiquetaMenu;
+    }
+
+    protected Inventario getInventario() {
+        return inventario;
     }
 }

@@ -4,6 +4,8 @@ import principal.Constantes;
 import principal.sprites.Sprite;
 import principal.sprites.SpriteSheet;
 
+import java.awt.*;
+
 public abstract class ItemInventario {
     protected final int id;
     protected final String nombre;

@@ -1,7 +1,7 @@
 package principal.inventario;
 
 import principal.herramientas.CargadorRecursos;
-import principal.herramientas.DibujoDebug;
+import principal.herramientas.DibujoDebug_R;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,7 +32,7 @@ public class ContenedorObjetos {
     }
 
     public void dibujar(final Graphics g, final Point posicion) {
-        DibujoDebug.dibujarImagen(g, sprite, posicion.x, posicion.y);
+        DibujoDebug_R.dibujarImagen(g, sprite, posicion.x, posicion.y);
     }
 
     public ItemInventario[] getObjetos() {

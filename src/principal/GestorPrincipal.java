@@ -3,6 +3,7 @@ package principal;
 import principal.control.GestorControles;
 import principal.graficos.SuperficieDibujo;
 import principal.graficos.Ventana;
+import principal.mapas.MapaTiled;
 import principal.maquinaestado.GestorEstados;
 
 public class GestorPrincipal {
@@ -25,6 +26,11 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
+
+        System.setProperty("sun.java2d.opengl", "true");
+
+        MapaTiled mapa = new MapaTiled(Constantes.RUTA_MAPA_SUCESIONES3);
+
         GestorPrincipal gp = new GestorPrincipal("Code-Breaker", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
         gp.iniciarJuego();
         gp.iniciarBuclePrincipal();

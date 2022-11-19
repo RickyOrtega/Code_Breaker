@@ -93,7 +93,7 @@ public class GeneradorTooltip {
                 break;
         }
 
-        DibujoDebug.dibujarRectangulo(g, tooltip, Color.BLACK,true);
-        DibujoDebug.dibujarString(g, texto, tooltip.x + margenFuente, tooltip.y + altoTooltip - margenFuente, Color.WHITE);
+        DibujoDebug_R.dibujarRectangulo(g, tooltip, Color.BLACK,true);
+        DibujoDebug_R.dibujarString(g, texto, tooltip.x + margenFuente, tooltip.y + altoTooltip - margenFuente, Color.WHITE);
     }
 }
