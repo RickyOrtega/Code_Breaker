@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="80" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="66">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="80" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="80">
+ <editorsettings>
+  <export target="../../src/resources/mapas/json/sucesionesMapa3.tmj" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="base.tsx"/>
  <tileset firstgid="111" source="base2.tsx"/>
  <layer id="1" name="Capa de patrones 1" width="40" height="80">
@@ -108,12 +111,6 @@
   <object id="14" x="1096.5" y="743.5" width="85" height="19">
    <text wrap="1">11</text>
   </object>
-  <object id="19" x="493.333" y="91">
-   <polygon points="0,0 -15.3333,4.33333 -26.3333,-3.66667 -21.6667,-9 -30,-18.3333 -38.3333,-27 -42.6667,-28 -34.3333,-46.3333 -28.6667,-49.6667 -39.3333,-61.3333 -36,-74 -30.6667,-78.3333 -12.6667,-87.3333 4.33333,-79.6667 10.3333,-71.3333 11.6667,-65.6667 11,-55.3333 3,-48.3333 11,-39.6667 11.3333,-31 11.3333,-25.6667 -3,-11.3333"/>
-  </object>
-  <object id="20" x="132.5" y="1214">
-   <polygon points="0,0 7.25,-4.5 4.75,-10.25 -1.25,-13.25 -12.5,-11 -17,-5.5 -10.25,-1.25"/>
-  </object>
   <object id="21" x="256.545" y="1121.64">
    <polygon points="0,0 0,61.4545 0.181818,-0.181818 -2,-0.181818 -1.45455,61.0909 -0.363636,61.4545"/>
   </object>
@@ -122,9 +119,6 @@
   </object>
   <object id="23" x="607.875" y="0">
    <polygon points="0,0 -1.16667,125.625 -31.9167,123.833 -31.875,415.25 -32,415.875 448,416 672.375,416 672.25,0"/>
-  </object>
-  <object id="26" x="126.5" y="1143">
-   <polygon points="4.5,6.25 13.1875,1.4375 8.4375,-4.6875 2,-5.875 -6.4375,-3.25 -10.0625,0.3125 -4.75,5.75"/>
   </object>
   <object id="27" x="780.167" y="745.833" width="85" height="19">
    <text wrap="1">5</text>
@@ -156,15 +150,6 @@
   <object id="37" x="1224.83" y="2117.83" width="85" height="19">
    <text wrap="1">32</text>
   </object>
-  <object id="38" x="175.5" y="2450.17">
-   <ellipse/>
-  </object>
-  <object id="40" x="176.333" y="2509.67">
-   <ellipse/>
-  </object>
-  <object id="41" x="144.833" y="2479.17">
-   <ellipse/>
-  </object>
   <object id="42" x="714.833" y="2119.83" width="85" height="19">
    <text wrap="1">55</text>
   </object>
@@ -174,14 +159,8 @@
   <object id="44" x="524.833" y="2281.17" width="85" height="19">
    <text wrap="1">89</text>
   </object>
-  <object id="45" x="224.333" y="2453">
-   <ellipse/>
-  </object>
-  <object id="46" x="288.333" y="2452.67">
-   <ellipse/>
-  </object>
   <object id="52" x="31.9844" y="416">
-   <polygon points="0,0 0.015625,800 0.197443,813.091 127.652,814.727 128.016,704 64.0156,704 64.0156,64 224.016,64 448.016,64 357.47,171.818 448.016,64 960.016,64 960.016,224 160.016,224 160.016,448 224.016,448 224.016,288 384.016,288 640.016,288 640.016,608 160.016,608 160.016,1632 -31.9844,1632 -31.9844,0"/>
+   <polygon points="0,0 0.015625,800 0.197443,813.091 127.652,814.727 128.016,704 64.0156,704 64.0156,64 960.016,64 960.016,224 160.016,224 160.016,448 224.016,448 224.016,288 384.016,288 640.016,288 640.016,608 160.016,608 160.016,1632 -31.9844,1632 -31.9844,0"/>
   </object>
   <object id="53" x="256" y="1088">
    <polygon points="0,0 0,32 416,32 416,0"/>
@@ -195,18 +174,20 @@
   <object id="56" x="672" y="1696">
    <polygon points="0,0 0,352 64,352 64,0 448,0 448,320 256,320 256,288 416,288 416,64 96,64 96,480 -544,480 -544,704 -480,704 -480,544 -256,544 -256,704 -256,736 -544,736 -544,832 -192,832 -192,544 96,544 96,768 -32,768 -32,832 160,832 160,544 256,544 256,512 224,512 224,480 160,480 160,128 352,128 352,224 192,224 192,384 448,384 448,832 512,832 512,864 -672,864 -672,352 -416,352 -416,0"/>
   </object>
-  <object id="58" x="351.5" y="2455">
-   <ellipse/>
-  </object>
-  <object id="63" x="343" y="2515.5" width="19" height="12">
-   <ellipse/>
-  </object>
-  <object id="64" x="276.5" y="2516.5" width="23" height="10.5">
-   <ellipse/>
-  </object>
-  <object id="65" x="214.5" y="2514.5" width="20.5" height="13">
-   <ellipse/>
-  </object>
+  <object id="66" x="176" y="2451"/>
+  <object id="67" x="145.5" y="2483"/>
+  <object id="68" x="225.5" y="2453"/>
+  <object id="69" x="289.5" y="2453"/>
+  <object id="70" x="351.5" y="2454"/>
+  <object id="71" x="350" y="2517"/>
+  <object id="72" x="288" y="2517.5"/>
+  <object id="73" x="226" y="2520"/>
+  <object id="74" x="176.5" y="2517.5"/>
+  <object id="75" x="80.6667" y="1173.33"/>
+  <object id="76" x="129" y="1142.67"/>
+  <object id="77" x="127.667" y="1204.67"/>
+  <object id="78" x="480.75" y="88.75"/>
+  <object id="79" x="480" y="52.25"/>
  </objectgroup>
  <layer id="3" name="Decoraciones" width="40" height="80">
   <data encoding="csv">

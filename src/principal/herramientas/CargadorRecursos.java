@@ -106,7 +106,7 @@ public class CargadorRecursos {
 
 
 
-    public static Font cargarFuente(final String ruta){
+    public static Font cargarFuente_(final String ruta){
 
         Font fuente = null;
 

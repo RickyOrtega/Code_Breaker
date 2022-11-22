@@ -2,7 +2,8 @@ package principal.maquinaestado.estados.juego;
 
 import principal.Constantes;
 import principal.entes.Jugador;
-import principal.interfazusuario.MenuInferior;
+import principal.interfazusuario.MenuInferior_R;
+import principal.interfazusuario.MenuLateral_R;
 import principal.mapas.Mapa;
 import principal.maquinaestado.EstadoJuego;
 import java.awt.*;
@@ -11,16 +12,16 @@ import static principal.maquinaestado.estados.menujuego.MenuInventario.inventari
 
 public class GestorJuego implements EstadoJuego {
 
-    private GestorMapa gm;
-
     private static Mapa mapa;
     private static Jugador jugador;
-    private MenuInferior menuInferior;
+    private MenuInferior_R menuInferior_r;
+    private MenuLateral_R menuLateralR;
 
     public GestorJuego() {
         iniciarMapa(Constantes.RUTA_MAPA_1);
         iniciarJugador();
-        menuInferior = new MenuInferior(jugador);
+        menuInferior_r = new MenuInferior_R(jugador);
+        menuLateralR = new MenuLateral_R();
     }
 
     private void recargarJuego() {
@@ -49,7 +50,8 @@ public class GestorJuego implements EstadoJuego {
     public void dibujar(final Graphics g) {
         mapa.dibujar(g, (int)jugador.getPosicionX(), (int)jugador.getPosicionY());
         jugador.dibujar(g);
-        menuInferior.dibujar(g, jugador);
+        menuInferior_r.dibujar(g, jugador);
+        menuLateralR.dibujar(g, mapa);
     }
 
     public static Mapa getMapa() {

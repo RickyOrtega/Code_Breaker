@@ -1,7 +1,5 @@
 package principal.herramientas;
 
-import principal.Constantes;
-
 import java.awt.*;
 
 public class MedidorString {

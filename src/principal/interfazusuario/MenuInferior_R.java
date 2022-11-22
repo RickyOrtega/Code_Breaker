@@ -6,11 +6,12 @@ import principal.herramientas.DibujoDebug_R;
 
 import java.awt.*;
 
-public class MenuInferior {
+public class MenuInferior_R {
     private Rectangle areaInventario;
     private Rectangle bordeAreaInventario;
+    private Rectangle areaInformacionMapa;
 
-    public MenuInferior(final Jugador jugador){
+    public MenuInferior_R(final Jugador jugador){
 
         int altoMenuItems = 64;
 
@@ -29,7 +30,7 @@ public class MenuInferior {
 
     public void dibujarAreaInventario(final Graphics g){
         DibujoDebug_R.dibujarRectangulo(g, bordeAreaInventario, Color.WHITE, true);
-        DibujoDebug_R.dibujarRectangulo(g, areaInventario, new Color(200,50,50,150).darker(), true);
+        DibujoDebug_R.dibujarRectangulo(g, areaInventario, new Color(200,50,50,255).darker(), true);
     }
 
     private void dibujarBarraVitalidad_R(final Graphics g){

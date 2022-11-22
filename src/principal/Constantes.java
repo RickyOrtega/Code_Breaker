@@ -26,15 +26,11 @@ public class Constantes {
     public static Color ROJO_GLOBAL = new Color(100,0,0);
 
     public static String RUTA_PERSONAJE = "/resources/imagenes/sheetPersonajes/c.png";
-    public static final String RUTA_MAPA_1 = "resources/mapas/03.cbm";
-    public static final String RUTA_MAPA_2 = "resources/mapas/02.cbm";
+    public static final String RUTA_MAPA_1 = "mapas/02.cbm";
+    public static final String RUTA_MAPA_2 = "mapas/05.cbm";
     public static final String RUTA_OBJETOS_INVENTARIO = "/imagenes/sheetObjetosInventario/01.png";
     public static final String RUTA_ROPA = "/imagenes/sheetObjetosInventario/ropa.png";
     public static final String RUTA_COFRES = "/resources/imagenes/sheetCofres/cobrecerrado.png";
     public static final String RUTA_ICONO_RATON = "/resources/imagenes/icons/iconcursor.png";
     public static final String RUTA_ICONO_VENTANA = "/resources/imagenes/icons/iconwindow.png";
-
-    //MAPAS JSON
-    public static final String RUTA_MAPA_SUCESIONES3 = "/resources/mapas/json/sucesiones3.tmj";
-
 }

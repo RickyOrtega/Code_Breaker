@@ -5,6 +5,7 @@ import principal.control.GestorControles;
 import principal.entes.Jugador;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug_R;
+import principal.herramientas.MedidorString;
 import principal.inventario.ContenedorObjetos;
 import principal.inventario.Inventario;
 import principal.sprites.Sprite;
@@ -15,6 +16,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Mapa {
+
+    public static int tiempoEnMs = 0;
 
     private String[] contenidoPartes;
     private final int ancho;
@@ -29,6 +32,10 @@ public class Mapa {
     private final boolean[] colisiones;
     private ArrayList<Rectangle> zonasColision = new ArrayList<Rectangle>();
     private ArrayList<ContenedorObjetos> objetosMapa;
+    private ArrayList<String> informacionMapa;
+
+    private ArrayList<String> textoADibujar;
+    private ArrayList<Point> posicionTexto;
 
     private final int MargenX = Constantes.ANCHO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
     private final int MargenY = Constantes.ALTO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
@@ -75,10 +82,52 @@ public class Mapa {
 
         zonaSalida = new Rectangle();
 
-        if(contenidoPartes.length > 8) {
-            String informacionObjetos = contenidoPartes[8];
-            objetosMapa = asignarObjetos(informacionObjetos);
+        String informacionObjetos = contenidoPartes[8];
+        objetosMapa = asignarObjetos(informacionObjetos);
+
+        String informacionMapa = contenidoPartes[9];
+        this.informacionMapa = instruccionesMapa(informacionMapa);
+
+        String texto = contenidoPartes[10];
+        textoADibujar = new ArrayList<String>();
+        posicionTexto = new ArrayList<Point>();
+
+        setNumerosDesafio(texto);
+
+        tiempoEnMs = Integer.parseInt(contenidoPartes[11].split("-")[0]);
+    }
+
+    private void setNumerosDesafio(String texto){
+        if(texto.equals("null")){
+            return;
+        } else {
+            String[] textoPartes = texto.split("/");
+
+            for(int i = 0; i < textoPartes.length; i++) {
+                if(textoPartes[i].charAt(0) == '0') {
+                    textoADibujar.add(textoPartes[i].substring(1, 2));
+                } else {
+                    textoADibujar.add(textoPartes[i].substring(0, 2));
+                }
+
+                int x = Integer.parseInt(textoPartes[i].substring(3,5));
+                int y = Integer.parseInt(textoPartes[i].substring(6,8));
+
+                posicionTexto.add(new Point(x, y));
+            }
         }
+    }
+
+    private ArrayList<String> instruccionesMapa(String informacionHacks){
+        ArrayList<String> instrucciones = new ArrayList<>();
+
+        String[] instruccionesPartes = informacionHacks.split("#");
+
+        for (int i = 0; i < instruccionesPartes.length; i++) {
+            instrucciones.add(instruccionesPartes[i]);
+        }
+
+        return instrucciones;
     }
 
     private ArrayList<ContenedorObjetos> asignarObjetos(String informacionObjetos) {
@@ -262,6 +311,15 @@ public class Mapa {
                 objeto.dibujar(g, new Point(puntoX, puntoY));
             }
         }
+
+        //Dibujar Números en el mapa
+        for(int i=0; i<textoADibujar.size();i++){
+            DibujoDebug_R.dibujarString(g,
+                                        textoADibujar.get(i),
+                               posicionTexto.get(i).x * Constantes.LADO_SPRITE - posicionX + MargenX - Constantes.LADO_SPRITE/2,
+                               posicionTexto.get(i).y * Constantes.LADO_SPRITE - posicionY + MargenY - Constantes.LADO_SPRITE/2,
+                                        Color.WHITE);
+        }
     }
 
     public int getAncho() {
@@ -310,5 +368,9 @@ public class Mapa {
 
     public Rectangle getZonaColision(final int indice) {
         return zonasColision.get(indice);
+    }
+
+    public ArrayList<String> getInformacionMapa(){
+        return informacionMapa;
     }
 }
