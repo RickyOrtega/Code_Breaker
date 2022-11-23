@@ -15,7 +15,6 @@ public class MenuLateral_R {
     public MenuLateral_R(){
 
     }
-
     public void dibujar(final Graphics g, final Mapa mapa){
         dibujarInformacionMapa(g, mapa);
     }

@@ -5,7 +5,6 @@ import principal.control.GestorControles;
 import principal.entes.Jugador;
 import principal.herramientas.CargadorRecursos;
 import principal.herramientas.DibujoDebug_R;
-import principal.herramientas.MedidorString;
 import principal.inventario.ContenedorObjetos;
 import principal.inventario.Inventario;
 import principal.sprites.Sprite;
@@ -37,64 +36,69 @@ public class Mapa {
     private ArrayList<String> textoADibujar;
     private ArrayList<Point> posicionTexto;
 
+    public static String isFinal = "no";
+
     private final int MargenX = Constantes.ANCHO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
     private final int MargenY = Constantes.ALTO_JUEGO / 2 - Constantes.LADO_SPRITE / 2;
 
     public Mapa(final String ruta) {
+
         String contenido = CargadorRecursos.leerArchivoTexto_R(ruta);
         contenidoPartes = contenido.split("\\*");
 
-        ancho = Integer.parseInt(contenidoPartes[0]);
-        alto = Integer.parseInt(contenidoPartes[1]);
+            ancho = Integer.parseInt(contenidoPartes[0]);
+            alto = Integer.parseInt(contenidoPartes[1]);
 
-        String usedSheets = contenidoPartes[2];
-        String[] sheets = usedSheets.split(",");
+            String usedSheets = contenidoPartes[2];
+            String[] sheets = usedSheets.split(",");
 
-        //Cargamos la paleta de sprites
-        String paleta = contenidoPartes[3];
-        String[] paletaPartes = paleta.split("#");
+            //Cargamos la paleta de sprites
+            String paleta = contenidoPartes[3];
+            String[] paletaPartes = paleta.split("#");
 
-        paletaSprites = asignarSprite(paletaPartes, sheets);
+            paletaSprites = asignarSprite(paletaPartes, sheets);
 
-        String colisionesEnteras = contenidoPartes[4];
-        colisiones = extraerColisiones(colisionesEnteras);
+            String colisionesEnteras = contenidoPartes[4];
+            colisiones = extraerColisiones(colisionesEnteras);
 
-        String spritesEnteros = contenidoPartes[5];
-        String[] cadenasSprites = spritesEnteros.split(" ");
+            String spritesEnteros = contenidoPartes[5];
+            String[] cadenasSprites = spritesEnteros.split(" ");
 
-        sprites = extraerSprites(cadenasSprites);
+            sprites = extraerSprites(cadenasSprites);
 
-        String posicion = contenidoPartes[6];
-        String[] posiciones = posicion.split("-");
+            String posicion = contenidoPartes[6];
+            String[] posiciones = posicion.split("-");
 
-        posicionInicial = new Point();
-        posicionInicial.x = Integer.parseInt(posiciones[0]) * Constantes.LADO_SPRITE;
-        posicionInicial.y = Integer.parseInt(posiciones[1]) * Constantes.LADO_SPRITE;
+            posicionInicial = new Point();
+            posicionInicial.x = Integer.parseInt(posiciones[0]) * Constantes.LADO_SPRITE;
+            posicionInicial.y = Integer.parseInt(posiciones[1]) * Constantes.LADO_SPRITE;
 
-        String salida = contenidoPartes[7];
-        String[] datosSalida = salida.split("-");
+            String salida = contenidoPartes[7];
+            String[] datosSalida = salida.split("-");
 
-        puntoSalida = new Point();
-        puntoSalida.x = Integer.parseInt(datosSalida[0]);
-        puntoSalida.y = Integer.parseInt(datosSalida[1]);
+            puntoSalida = new Point();
+            puntoSalida.x = Integer.parseInt(datosSalida[0]);
+            puntoSalida.y = Integer.parseInt(datosSalida[1]);
 
-        siguienteMapa = datosSalida[2];
+            siguienteMapa = datosSalida[2];
 
-        zonaSalida = new Rectangle();
+            zonaSalida = new Rectangle();
 
-        String informacionObjetos = contenidoPartes[8];
-        objetosMapa = asignarObjetos(informacionObjetos);
+            String informacionObjetos = contenidoPartes[8];
+            objetosMapa = asignarObjetos(informacionObjetos);
 
-        String informacionMapa = contenidoPartes[9];
-        this.informacionMapa = instruccionesMapa(informacionMapa);
+            String informacionMapa = contenidoPartes[9];
+            this.informacionMapa = instruccionesMapa(informacionMapa);
 
-        String texto = contenidoPartes[10];
-        textoADibujar = new ArrayList<String>();
-        posicionTexto = new ArrayList<Point>();
+            String texto = contenidoPartes[10];
+            textoADibujar = new ArrayList<String>();
+            posicionTexto = new ArrayList<Point>();
 
-        setNumerosDesafio(texto);
+            setNumerosDesafio(texto);
 
-        tiempoEnMs = Integer.parseInt(contenidoPartes[11].split("-")[0]);
+            tiempoEnMs = Integer.parseInt(contenidoPartes[11].split("-")[0]);
+            isFinal = contenidoPartes[9];
+
     }
 
     private void setNumerosDesafio(String texto){
@@ -291,34 +295,36 @@ public class Mapa {
     }
 
     public void dibujar(Graphics g, int posicionX, int posicionY) {
-        for (int y = 0; y < this.alto; y++) {
-            for (int x = 0; x < this.ancho; x++) {
-                BufferedImage spriteActual = paletaSprites[sprites[x + y * this.ancho]].getImage();
+        if(!(isFinal.equals("null"))){
+            for (int y = 0; y < this.alto; y++) {
+                for (int x = 0; x < this.ancho; x++) {
+                    BufferedImage spriteActual = paletaSprites[sprites[x + y * this.ancho]].getImage();
 
-                int puntoX = x * Constantes.LADO_SPRITE - posicionX + MargenX;
-                int puntoY = y * Constantes.LADO_SPRITE - posicionY + MargenY;
+                    int puntoX = x * Constantes.LADO_SPRITE - posicionX + MargenX;
+                    int puntoY = y * Constantes.LADO_SPRITE - posicionY + MargenY;
 
-                DibujoDebug_R.dibujarImagen(g, spriteActual, puntoX, puntoY);
+                    DibujoDebug_R.dibujarImagen(g, spriteActual, puntoX, puntoY);
+                }
             }
-        }
 
-        if(!objetosMapa.isEmpty()){
-            for(ContenedorObjetos objeto : objetosMapa){
+            if(!objetosMapa.isEmpty()){
+                for(ContenedorObjetos objeto : objetosMapa){
 
-                final int puntoX = objeto.getPosicion().x * Constantes.LADO_SPRITE - posicionX + MargenX;
-                final int puntoY = objeto.getPosicion().y * Constantes.LADO_SPRITE - posicionY + MargenY;
+                    final int puntoX = objeto.getPosicion().x * Constantes.LADO_SPRITE - posicionX + MargenX;
+                    final int puntoY = objeto.getPosicion().y * Constantes.LADO_SPRITE - posicionY + MargenY;
 
-                objeto.dibujar(g, new Point(puntoX, puntoY));
+                    objeto.dibujar(g, new Point(puntoX, puntoY));
+                }
             }
-        }
 
-        //Dibujar Números en el mapa
-        for(int i=0; i<textoADibujar.size();i++){
-            DibujoDebug_R.dibujarString(g,
-                                        textoADibujar.get(i),
-                               posicionTexto.get(i).x * Constantes.LADO_SPRITE - posicionX + MargenX - Constantes.LADO_SPRITE/2,
-                               posicionTexto.get(i).y * Constantes.LADO_SPRITE - posicionY + MargenY - Constantes.LADO_SPRITE/2,
-                                        Color.WHITE);
+            //Dibujar Números en el mapa
+            for(int i=0; i<textoADibujar.size();i++){
+                DibujoDebug_R.dibujarString(g,
+                        textoADibujar.get(i),
+                        posicionTexto.get(i).x * Constantes.LADO_SPRITE - posicionX + MargenX - Constantes.LADO_SPRITE/2,
+                        posicionTexto.get(i).y * Constantes.LADO_SPRITE - posicionY + MargenY - Constantes.LADO_SPRITE/2,
+                        Color.WHITE);
+            }
         }
     }
 

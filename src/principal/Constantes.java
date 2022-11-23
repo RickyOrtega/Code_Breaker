@@ -26,7 +26,7 @@ public class Constantes {
     public static Color ROJO_GLOBAL = new Color(100,0,0);
 
     public static String RUTA_PERSONAJE = "/resources/imagenes/sheetPersonajes/c.png";
-    public static final String RUTA_MAPA_1 = "mapas/02.cbm";
+    public static final String RUTA_MAPA_1 = "mapas/00.cbm";
     public static final String RUTA_MAPA_2 = "mapas/05.cbm";
     public static final String RUTA_OBJETOS_INVENTARIO = "/imagenes/sheetObjetosInventario/01.png";
     public static final String RUTA_ROPA = "/imagenes/sheetObjetosInventario/ropa.png";

@@ -107,7 +107,7 @@
 #
 #Mammon: Memoriza la secuencia que
 #verás en la parte superior del mapa
-#y luego recorre el recórrelo, con las
+#y luego recórrelo, utilizando las
 #señalizaciones que se muestran en el
 #piso.
 #
