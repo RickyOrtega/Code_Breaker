@@ -33,4 +33,6 @@ public class Constantes {
     public static final String RUTA_COFRES = "/resources/imagenes/sheetCofres/cobrecerrado.png";
     public static final String RUTA_ICONO_RATON = "/resources/imagenes/icons/iconcursor.png";
     public static final String RUTA_ICONO_VENTANA = "/resources/imagenes/icons/iconwindow.png";
+
+    public static final String PUNTUACIONES = "puntuaciones.dat";
 }

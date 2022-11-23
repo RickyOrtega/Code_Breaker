@@ -6,6 +6,8 @@ import principal.control.GestorControles;
 import principal.control.Raton;
 import principal.herramientas.DatosDebug_R;
 import principal.herramientas.DibujoDebug_R;
+import principal.herramientas.MedidorString;
+import principal.mapas.Mapa;
 import principal.maquinaestado.GestorEstados;
 import principal.maquinaestado.estados.juego.GestorJuego;
 
@@ -19,13 +21,17 @@ public class SuperficieDibujo extends Canvas {
     private final int WIDTH;
     private final int HEIGHT;
 
+    private String mostrarTiempo;
+
     private Raton raton;
 
-    public SuperficieDibujo(final int ancho, final int alto) {
+    public SuperficieDibujo(final int ancho, final int alto, final double mostrarTiempo) {
         this.WIDTH = ancho;
         this.HEIGHT = alto;
 
         this.raton = new Raton(this);
+
+        this.mostrarTiempo = mostrarTiempo + " ms";
 
         setCursor(raton.getCursor());
         setIgnoreRepaint(true);
@@ -48,6 +54,7 @@ public class SuperficieDibujo extends Canvas {
         }
 
         Graphics2D g = (Graphics2D) buffer.getDrawGraphics();
+        g.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
@@ -56,9 +63,25 @@ public class SuperficieDibujo extends Canvas {
             g.scale(Constantes.FACTOR_ESCALADO_X, Constantes.FACTOR_ESCALADO_Y);
         }
 
-        ge.dibujar(g);
+        if(Mapa.isFinal.equals("null")){
 
-        mostrarDebug_R();
+            int x = Constantes.CENTRO_VENTANA_X - MedidorString.medirAnchoPixeles(g, "GAME OVER");
+            int y = Constantes.CENTRO_VENTANA_Y - MedidorString.medirAltoPixeles(g, "GAME");
+            g.setColor(Constantes.ROJO_GLOBAL);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("GAME", x, y);
+            g.drawString("OVER", x, y + 50);
+
+            GestorPrincipal.enFuncionamiento = false;
+        } else {
+            ge.dibujar(g);
+
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", Font.BOLD, 20));
+            g.drawString(mostrarTiempo, 20, 20);
+
+            mostrarDebug_R();
+        }
 
         if (GestorControles.getTeclado().mostrandoMetricas){
             DatosDebug_R.dibujarDatos_R(g);
@@ -97,5 +120,13 @@ public class SuperficieDibujo extends Canvas {
 
     public Raton getRaton() {
         return raton;
+    }
+
+    public long getMostrarTiempo() {
+        return Long.parseLong(mostrarTiempo);
+    }
+
+    public void setMostrarTiempo(double mostrarTiempo) {
+        this.mostrarTiempo = mostrarTiempo + " s";
     }
 }

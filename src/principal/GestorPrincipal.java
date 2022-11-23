@@ -3,11 +3,19 @@ package principal;
 import principal.control.GestorControles;
 import principal.graficos.SuperficieDibujo;
 import principal.graficos.Ventana;
-import principal.mapas.MapaTiled;
+import principal.mapas.Mapa;
 import principal.maquinaestado.GestorEstados;
+import principal.puntuaciones.Archivo;
+import principal.puntuaciones.Puntuacion;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class GestorPrincipal {
-    private boolean enFuncionamiento = false;
+
+    private ArrayList<Puntuacion> listaPuntajes = new ArrayList<Puntuacion>();
+    private Archivo archivoPuntajes;
+    public static boolean enFuncionamiento = false;
     private String title;
     private int WIDTH;
     private int HEIGHT;
@@ -19,26 +27,32 @@ public class GestorPrincipal {
     private static int aps;
     private static int fps;
 
-    private GestorPrincipal(final String titulo, final int ancho, final int alto){
+    private long inicio;
+    private long fin;
+    public static double tiempoTranscurrido;
+    private String nombre = null;
+    private int contador=0;
+
+    public GestorPrincipal(final String titulo, final int ancho, final int alto){
         this.title = titulo;
         this.WIDTH = ancho;
         this.HEIGHT = alto;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
 
         System.setProperty("sun.java2d.opengl", "true");
 
         GestorPrincipal gp = new GestorPrincipal("Code-Breaker", Constantes.ANCHO_PANTALLA_COMPLETA, Constantes.ALTO_PANTALLA_COMPLETA);
         gp.iniciarJuego();
         gp.iniciarBuclePrincipal();
-    }
-    private void iniciarJuego(){
+    }*/
+    public void iniciarJuego(){
         enFuncionamiento = true;
         inicializar();
     }
 
-    private void iniciarBuclePrincipal(){
+    public void iniciarBuclePrincipal(){
 
         int actualizacionesAcumuladas = 0;
         int framesAcumulados = 0;
@@ -49,6 +63,8 @@ public class GestorPrincipal {
 
         long updateReference = System.nanoTime();
         long counterReference = System.nanoTime();
+
+        inicio = System.currentTimeMillis();
 
         double elapsedTime;
         double delta = 0;
@@ -80,6 +96,25 @@ public class GestorPrincipal {
 
                 counterReference = System.nanoTime();
             }
+
+            fin = System.currentTimeMillis();
+            tiempoTranscurrido = (double)(fin - inicio)/1000;
+
+            if(Mapa.isFinal.equals("null") && contador<=0){
+                ventana.dispose();
+
+                nombre = JOptionPane.showInputDialog("Introduce tu nombre: ");
+                int puntuacion = (int) (5000 - tiempoTranscurrido);
+
+                listaPuntajes.add(new Puntuacion(nombre, puntuacion, tiempoTranscurrido));
+
+                System.out.println(listaPuntajes.get(0).toString());
+
+                archivoPuntajes = new Archivo(Constantes.PUNTUACIONES, (ArrayList) listaPuntajes);
+                archivoPuntajes.guardar();
+
+                contador++;
+            }
         }
     }
 
@@ -94,12 +129,14 @@ public class GestorPrincipal {
             ge.setEstadoActual(0);
         }
 
+        sd.setMostrarTiempo(tiempoTranscurrido);
+
         ge.actualizar();
         sd.actualizar();
     }
 
     private void inicializar(){
-        sd = new SuperficieDibujo(this.WIDTH, this.HEIGHT);
+        sd = new SuperficieDibujo(this.WIDTH, this.HEIGHT, tiempoTranscurrido);
         ventana = new Ventana(title, sd);
         ge = new GestorEstados(sd);
     }

@@ -1,5 +1,8 @@
 package principal.control;
 
+import principal.GestorPrincipal;
+import principal.graficos.Ventana;
+
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -48,6 +51,8 @@ public class Teclado implements KeyListener {
             case KeyEvent.VK_I:
 
                 int opcion = JOptionPane.showConfirmDialog(null, "¿Desea salir del juego?", "Salir", JOptionPane.YES_NO_OPTION);
+
+                GestorPrincipal.enFuncionamiento = false;
 
                 if(opcion == JOptionPane.YES_OPTION){
                     System.exit(0);

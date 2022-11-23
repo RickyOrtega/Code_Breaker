@@ -51,4 +51,8 @@ public class Ventana extends JFrame {
             java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
+
+    public void cambiarVisibilidad(){
+        this.dispose();
+    }
 }
